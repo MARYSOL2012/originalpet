@@ -1,0 +1,65 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF8C42;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7ED321;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo con gradiente -->
+  <rect width="512" height="512" fill="url(#bgGradient)"/>
+  
+  <!-- Tarjeta principal -->
+  <rect x="50" y="100" width="412" height="312" rx="20" fill="url(#cardGradient)" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Veterinario profesional -->
+  <circle cx="200" cy="180" r="40" fill="#4A90E2"/>
+  <rect x="180" y="220" width="40" height="60" fill="#2C3E50"/>
+  <rect x="170" y="280" width="60" height="20" fill="#34495e"/>
+  
+  <!-- Dueño de mascota -->
+  <circle cx="320" cy="180" r="35" fill="#FF8C42"/>
+  <rect x="305" y="215" width="30" height="50" fill="#2C3E50"/>
+  <rect x="300" y="265" width="40" height="15" fill="#34495e"/>
+  
+  <!-- Perro -->
+  <ellipse cx="150" cy="350" rx="25" ry="20" fill="#8B4513"/>
+  <circle cx="140" cy="340" r="8" fill="#000"/>
+  <circle cx="160" cy="340" r="8" fill="#000"/>
+  <ellipse cx="150" cy="360" rx="15" ry="8" fill="#000"/>
+  
+  <!-- Gato -->
+  <ellipse cx="350" cy="350" rx="20" ry="18" fill="#FFA500"/>
+  <circle cx="345" cy="342" r="6" fill="#000"/>
+  <circle cx="355" cy="342" r="6" fill="#000"/>
+  <ellipse cx="350" cy="358" rx="12" ry="6" fill="#000"/>
+  
+  <!-- Elementos de consulta -->
+  <rect x="80" y="120" width="60" height="40" rx="5" fill="#7ED321" opacity="0.8"/>
+  <text x="110" y="145" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">CONSULTA</text>
+  
+  <rect x="370" y="120" width="60" height="40" rx="5" fill="#FF6B6B" opacity="0.8"/>
+  <text x="400" y="145" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">CUIDADO</text>
+  
+  <!-- Líneas de conexión -->
+  <line x1="200" y1="220" x2="150" y2="350" stroke="#4A90E2" stroke-width="3" opacity="0.7"/>
+  <line x1="200" y1="220" x2="350" y2="350" stroke="#4A90E2" stroke-width="3" opacity="0.7"/>
+  <line x1="200" y1="220" x2="320" y2="215" stroke="#4A90E2" stroke-width="3" opacity="0.7"/>
+  
+  <!-- Iconos de asesoría -->
+  <circle cx="120" cy="200" r="15" fill="#FF8C42" opacity="0.9"/>
+  <text x="120" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="16">💡</text>
+  
+  <circle cx="380" cy="200" r="15" fill="#7ED321" opacity="0.9"/>
+  <text x="380" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="16">❤️</text>
+  
+  <!-- Título -->
+  <text x="256" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">ASESORÍA PERSONALIZADA</text>
+  <text x="256" y="450" text-anchor="middle" fill="white" font-family="Arial" font-size="16" opacity="0.9">Cuidado experto para tu mascota</text>
+</svg>
+

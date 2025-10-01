@@ -1,0 +1,67 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7ED321;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo con gradiente -->
+  <rect width="512" height="512" fill="url(#bgGradient2)"/>
+  
+  <!-- Tarjeta principal -->
+  <rect x="50" y="100" width="412" height="312" rx="20" fill="url(#cardGradient2)" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Centro de atención al cliente -->
+  <rect x="150" y="150" width="212" height="120" rx="15" fill="#4A90E2" opacity="0.9"/>
+  <rect x="160" y="160" width="192" height="100" rx="10" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Persona atendiendo -->
+  <circle cx="200" cy="200" r="25" fill="#FF8C42"/>
+  <rect x="190" y="225" width="20" height="30" fill="#2C3E50"/>
+  <rect x="185" y="255" width="30" height="10" fill="#34495e"/>
+  
+  <!-- Cliente satisfecho -->
+  <circle cx="320" cy="200" r="25" fill="#7ED321"/>
+  <rect x="310" y="225" width="20" height="30" fill="#2C3E50"/>
+  <rect x="305" y="255" width="30" height="10" fill="#34495e"/>
+  
+  <!-- Mascota feliz -->
+  <ellipse cx="260" cy="320" rx="30" ry="25" fill="#FFA500"/>
+  <circle cx="250" cy="310" r="6" fill="#000"/>
+  <circle cx="270" cy="310" r="6" fill="#000"/>
+  <ellipse cx="260" cy="330" rx="18" ry="8" fill="#000"/>
+  
+  <!-- Elementos de seguimiento -->
+  <rect x="80" y="120" width="50" height="35" rx="5" fill="#7ED321" opacity="0.8"/>
+  <text x="105" y="140" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">SEGUIMIENTO</text>
+  
+  <rect x="380" y="120" width="50" height="35" rx="5" fill="#FF6B6B" opacity="0.8"/>
+  <text x="405" y="140" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">SOPORTE</text>
+  
+  <!-- Iconos de servicio -->
+  <circle cx="120" cy="200" r="18" fill="#4A90E2" opacity="0.9"/>
+  <text x="120" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="16">📞</text>
+  
+  <circle cx="380" cy="200" r="18" fill="#7ED321" opacity="0.9"/>
+  <text x="380" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="16">✅</text>
+  
+  <circle cx="120" cy="280" r="18" fill="#FF8C42" opacity="0.9"/>
+  <text x="120" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="16">🔄</text>
+  
+  <circle cx="380" cy="280" r="18" fill="#FF6B6B" opacity="0.9"/>
+  <text x="380" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="16">💬</text>
+  
+  <!-- Líneas de conexión -->
+  <line x1="200" y1="200" x2="260" y2="320" stroke="#4A90E2" stroke-width="2" opacity="0.6"/>
+  <line x1="320" y1="200" x2="260" y2="320" stroke="#7ED321" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Título -->
+  <text x="256" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">SERVICIO DE POSTVENTA</text>
+  <text x="256" y="450" text-anchor="middle" fill="white" font-family="Arial" font-size="16" opacity="0.9">Seguimiento continuo y soporte</text>
+</svg>

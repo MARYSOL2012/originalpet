@@ -1,0 +1,76 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7ED321;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo con gradiente -->
+  <rect width="512" height="512" fill="url(#bgGradient5)"/>
+  
+  <!-- Tarjeta principal -->
+  <rect x="50" y="100" width="412" height="312" rx="20" fill="url(#cardGradient5)" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Centro de atención -->
+  <rect x="150" y="150" width="212" height="120" rx="15" fill="#4A90E2" opacity="0.9"/>
+  <rect x="160" y="160" width="192" height="100" rx="10" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Agente de atención -->
+  <circle cx="200" cy="200" r="30" fill="#FF8C42"/>
+  <rect x="185" y="230" width="30" height="40" fill="#2C3E50"/>
+  <rect x="180" y="270" width="40" height="15" fill="#34495e"/>
+  
+  <!-- Cliente satisfecho -->
+  <circle cx="320" cy="200" r="30" fill="#7ED321"/>
+  <rect x="305" y="230" width="30" height="40" fill="#2C3E50"/>
+  <rect x="300" y="270" width="40" height="15" fill="#34495e"/>
+  
+  <!-- Mascota contenta -->
+  <ellipse cx="260" cy="320" rx="35" ry="28" fill="#FFA500"/>
+  <circle cx="250" cy="310" r="8" fill="#000"/>
+  <circle cx="270" cy="310" r="8" fill="#000"/>
+  <ellipse cx="260" cy="335" rx="20" ry="10" fill="#000"/>
+  
+  <!-- Elementos de servicio -->
+  <rect x="80" y="120" width="50" height="35" rx="5" fill="#7ED321" opacity="0.8"/>
+  <text x="105" y="140" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">SERVICIO</text>
+  
+  <rect x="380" y="120" width="50" height="35" rx="5" fill="#FF6B6B" opacity="0.8"/>
+  <text x="405" y="140" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">CALIDAD</text>
+  
+  <!-- Iconos de atención -->
+  <circle cx="120" cy="200" r="20" fill="#4A90E2" opacity="0.9"/>
+  <text x="120" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="18">🎧</text>
+  
+  <circle cx="380" cy="200" r="20" fill="#7ED321" opacity="0.9"/>
+  <text x="380" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="18">💬</text>
+  
+  <circle cx="120" cy="280" r="20" fill="#FF8C42" opacity="0.9"/>
+  <text x="120" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="18">⏰</text>
+  
+  <circle cx="380" cy="280" r="20" fill="#FF6B6B" opacity="0.9"/>
+  <text x="380" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="18">⭐</text>
+  
+  <!-- Líneas de comunicación -->
+  <line x1="200" y1="200" x2="260" y2="320" stroke="#4A90E2" stroke-width="3" opacity="0.7"/>
+  <line x1="320" y1="200" x2="260" y2="320" stroke="#7ED321" stroke-width="3" opacity="0.7"/>
+  <line x1="200" y1="200" x2="320" y2="200" stroke="#FF6B6B" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Elementos adicionales -->
+  <rect x="100" y="350" width="80" height="30" rx="15" fill="#4A90E2" opacity="0.8"/>
+  <text x="140" y="370" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">24/7</text>
+  
+  <rect x="320" y="350" width="80" height="30" rx="15" fill="#7ED321" opacity="0.8"/>
+  <text x="360" y="370" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">RÁPIDO</text>
+  
+  <!-- Título -->
+  <text x="256" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">EXCELENTE ATENCIÓN AL CLIENTE</text>
+  <text x="256" y="450" text-anchor="middle" fill="white" font-family="Arial" font-size="16" opacity="0.9">Servicio profesional y dedicado</text>
+</svg>
+

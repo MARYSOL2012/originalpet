@@ -1,0 +1,78 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7ED321;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo con gradiente -->
+  <rect width="512" height="512" fill="url(#bgGradient4)"/>
+  
+  <!-- Tarjeta principal -->
+  <rect x="50" y="100" width="412" height="312" rx="20" fill="url(#cardGradient4)" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Corazón central -->
+  <path d="M256 180 C256 160, 240 150, 220 170 C200 150, 180 160, 180 180 C180 200, 220 240, 256 280 C292 240, 332 200, 332 180 C332 160, 312 150, 292 170 C272 150, 256 160, 256 180 Z" fill="#FF6B6B" stroke="#E53E3E" stroke-width="2"/>
+  
+  <!-- Dueño emocionado -->
+  <circle cx="200" cy="200" r="35" fill="#FF8C42"/>
+  <rect x="185" y="235" width="30" height="40" fill="#2C3E50"/>
+  <rect x="180" y="275" width="40" height="15" fill="#34495e"/>
+  
+  <!-- Mascota feliz -->
+  <ellipse cx="320" cy="200" rx="30" ry="25" fill="#FFA500"/>
+  <circle cx="310" cy="190" r="8" fill="#000"/>
+  <circle cx="330" cy="190" r="8" fill="#000"/>
+  <ellipse cx="320" cy="210" rx="20" ry="10" fill="#000"/>
+  
+  <!-- Conexión emocional -->
+  <path d="M235 200 Q256 180 277 200" stroke="#FF6B6B" stroke-width="4" fill="none" opacity="0.8"/>
+  <path d="M235 210 Q256 190 277 210" stroke="#FF6B6B" stroke-width="4" fill="none" opacity="0.6"/>
+  <path d="M235 220 Q256 200 277 220" stroke="#FF6B6B" stroke-width="4" fill="none" opacity="0.4"/>
+  
+  <!-- Elementos de comunicación -->
+  <rect x="80" y="120" width="60" height="40" rx="5" fill="#4A90E2" opacity="0.8"/>
+  <text x="110" y="145" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">EMOCIONES</text>
+  
+  <rect x="370" y="120" width="60" height="40" rx="5" fill="#7ED321" opacity="0.8"/>
+  <text x="400" y="145" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">CONEXIÓN</text>
+  
+  <!-- Iconos emocionales -->
+  <circle cx="120" cy="200" r="20" fill="#FF6B6B" opacity="0.9"/>
+  <text x="120" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="18">💝</text>
+  
+  <circle cx="380" cy="200" r="20" fill="#4A90E2" opacity="0.9"/>
+  <text x="380" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="18">💬</text>
+  
+  <circle cx="120" cy="280" r="20" fill="#7ED321" opacity="0.9"/>
+  <text x="120" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="18">🎭</text>
+  
+  <circle cx="380" cy="280" r="20" fill="#FF8C42" opacity="0.9"/>
+  <text x="380" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="18">🌟</text>
+  
+  <!-- Mascotas adicionales -->
+  <ellipse cx="150" cy="350" rx="20" ry="18" fill="#8B4513"/>
+  <circle cx="145" cy="342" r="5" fill="#000"/>
+  <circle cx="155" cy="342" r="5" fill="#000"/>
+  <ellipse cx="150" cy="358" rx="12" ry="5" fill="#000"/>
+  
+  <ellipse cx="350" cy="350" rx="22" ry="20" fill="#FF69B4"/>
+  <circle cx="345" cy="342" r="6" fill="#000"/>
+  <circle cx="355" cy="342" r="6" fill="#000"/>
+  <ellipse cx="350" cy="358" rx="14" ry="6" fill="#000"/>
+  
+  <!-- Líneas de conexión emocional -->
+  <line x1="200" y1="200" x2="150" y2="350" stroke="#FF6B6B" stroke-width="2" opacity="0.6"/>
+  <line x1="320" y1="200" x2="350" y2="350" stroke="#FF6B6B" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Título -->
+  <text x="256" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">COMUNICACIÓN EMOCIONAL</text>
+  <text x="256" y="450" text-anchor="middle" fill="white" font-family="Arial" font-size="16" opacity="0.9">Conectando a través del amor por las mascotas</text>
+</svg>
+

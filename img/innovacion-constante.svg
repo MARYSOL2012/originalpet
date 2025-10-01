@@ -1,0 +1,81 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7ED321;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF8C42;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4A90E2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo con gradiente -->
+  <rect width="512" height="512" fill="url(#bgGradient6)"/>
+  
+  <!-- Tarjeta principal -->
+  <rect x="50" y="100" width="412" height="312" rx="20" fill="url(#cardGradient6)" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Bombilla de innovación central -->
+  <circle cx="256" cy="200" r="50" fill="#FFD700" stroke="#FFA500" stroke-width="3"/>
+  <text x="256" y="210" text-anchor="middle" fill="#FF8C42" font-family="Arial" font-size="36" font-weight="bold">💡</text>
+  
+  <!-- Rayos de luz -->
+  <line x1="256" y1="150" x2="256" y2="100" stroke="#FFD700" stroke-width="4" opacity="0.8"/>
+  <line x1="256" y1="150" x2="200" y2="120" stroke="#FFD700" stroke-width="4" opacity="0.8"/>
+  <line x1="256" y1="150" x2="312" y2="120" stroke="#FFD700" stroke-width="4" opacity="0.8"/>
+  <line x1="256" y1="150" x2="180" y2="150" stroke="#FFD700" stroke-width="4" opacity="0.8"/>
+  <line x1="256" y1="150" x2="332" y2="150" stroke="#FFD700" stroke-width="4" opacity="0.8"/>
+  
+  <!-- Tecnología moderna -->
+  <rect x="150" y="250" width="60" height="40" rx="8" fill="#4A90E2" opacity="0.9"/>
+  <text x="180" y="275" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">TECH</text>
+  
+  <rect x="300" y="250" width="60" height="40" rx="8" fill="#7ED321" opacity="0.9"/>
+  <text x="330" y="275" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">AI</text>
+  
+  <!-- Mascotas con tecnología -->
+  <ellipse cx="180" cy="350" rx="25" ry="20" fill="#8B4513"/>
+  <circle cx="170" cy="340" r="6" fill="#000"/>
+  <circle cx="190" cy="340" r="6" fill="#000"/>
+  <ellipse cx="180" cy="360" rx="15" ry="6" fill="#000"/>
+  <rect x="175" y="320" width="10" height="15" fill="#4A90E2" opacity="0.8"/>
+  
+  <ellipse cx="330" cy="350" rx="22" ry="18" fill="#FFA500"/>
+  <circle cx="325" cy="342" r="5" fill="#000"/>
+  <circle cx="335" cy="342" r="5" fill="#000"/>
+  <ellipse cx="330" cy="358" rx="12" ry="5" fill="#000"/>
+  <rect x="325" y="320" width="10" height="15" fill="#7ED321" opacity="0.8"/>
+  
+  <!-- Elementos de innovación -->
+  <rect x="80" y="120" width="60" height="40" rx="5" fill="#4A90E2" opacity="0.8"/>
+  <text x="110" y="145" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">FUTURO</text>
+  
+  <rect x="370" y="120" width="60" height="40" rx="5" fill="#7ED321" opacity="0.8"/>
+  <text x="400" y="145" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">IDEAS</text>
+  
+  <!-- Iconos de innovación -->
+  <circle cx="120" cy="200" r="20" fill="#4A90E2" opacity="0.9"/>
+  <text x="120" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="18">🚀</text>
+  
+  <circle cx="380" cy="200" r="20" fill="#7ED321" opacity="0.9"/>
+  <text x="380" y="205" text-anchor="middle" fill="white" font-family="Arial" font-size="18">⚡</text>
+  
+  <circle cx="120" cy="280" r="20" fill="#FF8C42" opacity="0.9"/>
+  <text x="120" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="18">🔬</text>
+  
+  <circle cx="380" cy="280" r="20" fill="#FF6B6B" opacity="0.9"/>
+  <text x="380" y="285" text-anchor="middle" fill="white" font-family="Arial" font-size="18">🎯</text>
+  
+  <!-- Líneas de conexión -->
+  <line x1="256" y1="250" x2="180" y2="350" stroke="#4A90E2" stroke-width="2" opacity="0.6"/>
+  <line x1="256" y1="250" x2="330" y2="350" stroke="#7ED321" stroke-width="2" opacity="0.6"/>
+  <line x1="256" y1="250" x2="180" y2="270" stroke="#FF8C42" stroke-width="2" opacity="0.6"/>
+  <line x1="256" y1="250" x2="330" y2="270" stroke="#FF8C42" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Título -->
+  <text x="256" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">INNOVACIÓN CONSTANTE</text>
+  <text x="256" y="450" text-anchor="middle" fill="white" font-family="Arial" font-size="16" opacity="0.9">Amigo de confianza para hacer brillar a tu mascota</text>
+</svg>
+
