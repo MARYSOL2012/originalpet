@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Manejo del formulario de contacto
+// Manejo del formulario de contacto con confirmación humana
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -93,36 +93,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         return;
     }
     
-    // Simular envío del formulario
-    const submitBtn = this.querySelector('.submit-btn');
-    const originalText = submitBtn.innerHTML;
-    
-    // Mostrar estado de carga
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitBtn.disabled = true;
-    
-    // Simular delay de envío
-    setTimeout(() => {
-        // Mostrar mensaje de éxito
-        showMessage('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
-        
-        // Limpiar formulario
-        this.reset();
-        
-        // Restaurar botón
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Mostrar en consola como se solicitó
-        console.log('Formulario enviado correctamente');
-        console.log('Datos del formulario:', {
-            nombre: nombre,
-            correo: correo,
-            mensaje: mensaje,
-            timestamp: new Date().toISOString()
-        });
-        
-    }, 2000);
+    // Mostrar modal de confirmación humana
+    showHumanConfirmationModal({
+        nombre: nombre,
+        correo: correo,
+        mensaje: mensaje,
+        formElement: this
+    });
 });
 
 // Función para validar email
@@ -176,6 +153,352 @@ function showMessage(message, type) {
             }
         }, 300);
     }, 5000);
+}
+
+// Función para mostrar modal de confirmación humana
+function showHumanConfirmationModal(orderData) {
+    // Crear overlay del modal
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'confirmation-modal-overlay';
+    modalOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 10001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+    
+    // Crear modal
+    const modal = document.createElement('div');
+    modal.className = 'confirmation-modal';
+    modal.innerHTML = `
+        <div class="modal-header">
+            <h3><i class="fas fa-user-check"></i> Confirmación Humana Requerida</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="confirmation-info">
+                <p><strong>🐾 THE ORIGINALS PETS</strong></p>
+                <p>Se requiere confirmación humana para procesar este pedido:</p>
+                <div class="order-details">
+                    <p><strong>Cliente:</strong> ${orderData.nombre}</p>
+                    <p><strong>Email:</strong> ${orderData.correo}</p>
+                    <p><strong>Mensaje:</strong> ${orderData.mensaje}</p>
+                </div>
+            </div>
+            <div class="confirmation-input">
+                <label for="human-confirmation">
+                    <i class="fas fa-key"></i> Escriba "OK CONFIRMADO" para finalizar el pedido:
+                </label>
+                <input type="text" id="human-confirmation" placeholder="Escriba aquí: OK CONFIRMADO" autocomplete="off">
+                <div class="confirmation-status" id="confirmation-status"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel">Cancelar</button>
+            <button class="btn-confirm" disabled>
+                <i class="fas fa-check"></i> Finalizar Pedido
+            </button>
+        </div>
+    `;
+    
+    // Estilos del modal
+    modal.style.cssText = `
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        transform: scale(0.8);
+        transition: transform 0.3s ease;
+    `;
+    
+    // Agregar estilos CSS para el modal
+    const style = document.createElement('style');
+    style.textContent = `
+        .confirmation-modal-overlay {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        
+        .confirmation-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #FF6B6B;
+        }
+        
+        .order-details p {
+            margin: 8px 0;
+            color: #333;
+        }
+        
+        .confirmation-input label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .confirmation-input input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .confirmation-input input:focus {
+            outline: none;
+            border-color: #FF6B6B;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        .confirmation-status {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .modal-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+        
+        .btn-cancel, .btn-confirm {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-cancel {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-cancel:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .btn-confirm {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            color: white;
+        }
+        
+        .btn-confirm:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .btn-confirm:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+    `;
+    
+    document.head.appendChild(style);
+    modalOverlay.appendChild(modal);
+    document.body.appendChild(modalOverlay);
+    
+    // Animar entrada
+    setTimeout(() => {
+        modalOverlay.style.opacity = '1';
+        modal.style.transform = 'scale(1)';
+    }, 100);
+    
+    // Elementos del modal
+    const confirmInput = modal.querySelector('#human-confirmation');
+    const confirmBtn = modal.querySelector('.btn-confirm');
+    const cancelBtn = modal.querySelector('.btn-cancel');
+    const closeBtn = modal.querySelector('.close-btn');
+    const statusDiv = modal.querySelector('#confirmation-status');
+    
+    // Función para validar confirmación
+    function validateConfirmation() {
+        const inputValue = confirmInput.value.trim().toUpperCase();
+        const requiredText = 'OK CONFIRMADO';
+        
+        if (inputValue === requiredText) {
+            confirmBtn.disabled = false;
+            statusDiv.innerHTML = '<i class="fas fa-check-circle" style="color: #66BB6A;"></i> Confirmación válida - Listo para finalizar';
+            statusDiv.style.color = '#66BB6A';
+        } else {
+            confirmBtn.disabled = true;
+            if (inputValue.length > 0) {
+                statusDiv.innerHTML = '<i class="fas fa-times-circle" style="color: #FF6B6B;"></i> Texto incorrecto - Escriba exactamente: OK CONFIRMADO';
+                statusDiv.style.color = '#FF6B6B';
+            } else {
+                statusDiv.innerHTML = '';
+            }
+        }
+    }
+    
+    // Event listeners
+    confirmInput.addEventListener('input', validateConfirmation);
+    
+    confirmBtn.addEventListener('click', function() {
+        if (!confirmBtn.disabled) {
+            // Registrar confirmación en el sistema de logging
+            const confirmationId = window.logOrderConfirmation(orderData);
+            
+            // Log de confirmación
+            console.log('✅ PEDIDO CONFIRMADO POR HUMANO:', {
+                timestamp: new Date().toISOString(),
+                cliente: orderData.nombre,
+                email: orderData.correo,
+                mensaje: orderData.mensaje,
+                confirmado_por: 'Usuario humano',
+                confirmationId: confirmationId
+            });
+            
+            // Procesar el pedido
+            processOrder(orderData, orderData.formElement, confirmationId);
+            
+            // Cerrar modal
+            closeModal();
+        }
+    });
+    
+    cancelBtn.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+    
+    // Cerrar al hacer clic fuera del modal
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+    
+    // Cerrar con Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+    
+    // Función para cerrar modal
+    function closeModal() {
+        modalOverlay.style.opacity = '0';
+        modal.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            document.body.removeChild(modalOverlay);
+            document.head.removeChild(style);
+        }, 300);
+    }
+    
+    // Enfocar el input
+    setTimeout(() => {
+        confirmInput.focus();
+    }, 500);
+}
+
+// Función para procesar el pedido después de la confirmación
+function processOrder(orderData, formElement, confirmationId) {
+    const submitBtn = formElement.querySelector('.submit-btn');
+    const originalText = submitBtn.innerHTML;
+    
+    // Mostrar estado de carga
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+    submitBtn.disabled = true;
+    
+    // Simular procesamiento del pedido
+    setTimeout(() => {
+        // Registrar pedido completado en el sistema de logging
+        const completedId = window.logOrderCompleted(orderData, confirmationId);
+        
+        // Mostrar mensaje de éxito
+        showMessage('✅ ¡Pedido confirmado y procesado exitosamente! Te contactaremos pronto.', 'success');
+        
+        // Limpiar formulario
+        formElement.reset();
+        
+        // Restaurar botón
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Log final del pedido procesado
+        console.log('🎯 PEDIDO FINALIZADO:', {
+            timestamp: new Date().toISOString(),
+            cliente: orderData.nombre,
+            email: orderData.correo,
+            mensaje: orderData.mensaje,
+            estado: 'CONFIRMADO Y PROCESADO',
+            confirmacion_humana: true,
+            confirmationId: confirmationId,
+            completedId: completedId
+        });
+        
+        // Mostrar estadísticas actualizadas
+        if (window.OrderLogger) {
+            setTimeout(() => {
+                window.OrderLogger.showStats();
+            }, 1000);
+        }
+        
+    }, 2000);
 }
 
 // Efectos adicionales para mejorar la experiencia
@@ -320,10 +643,56 @@ function addVisitorCounter() {
     document.body.appendChild(counter);
 }
 
+// Función para coordinar Vapi AI con confirmación humana
+function setupVapiIntegration() {
+    // Esperar a que Vapi AI se cargue
+    setTimeout(function() {
+        const vapiWidget = document.querySelector('vapi-widget');
+        
+        if (vapiWidget) {
+            // Interceptar conversaciones de Vapi AI que requieran confirmación
+            vapiWidget.addEventListener('vapi:assistant-message', function(event) {
+                const message = event.detail?.message?.toLowerCase() || '';
+                
+                // Detectar si el asistente sugiere hacer un pedido
+                if (message.includes('pedido') || message.includes('orden') || message.includes('comprar')) {
+                    console.log('🎯 Vapi AI detectó intención de pedido');
+                    
+                    // Mostrar notificación al usuario sobre confirmación
+                    setTimeout(() => {
+                        showMessage('💡 Recuerda que todos los pedidos requieren confirmación humana escribiendo "OK CONFIRMADO"', 'info');
+                    }, 1000);
+                }
+            });
+        }
+    }, 3000);
+}
+
+// Función para mostrar información sobre los dos sistemas
+function showSystemInfo() {
+    console.group('🤖 SISTEMAS INTEGRADOS - THE ORIGINALS PETS');
+    console.log('🎤 Vapi AI: Asistente de voz especializado en mascotas');
+    console.log('👤 Confirmación Humana: Sistema de validación para pedidos');
+    console.log('📊 Sistema de Logging: Registro completo de todas las actividades');
+    console.log('💬 Chatbase: Chatbot de texto para consultas rápidas');
+    console.groupEnd();
+    
+    // Mostrar estadísticas si están disponibles
+    if (window.OrderLogger) {
+        setTimeout(() => {
+            window.OrderLogger.showStats();
+        }, 1000);
+    }
+}
+
 // Inicializar efectos adicionales
 document.addEventListener('DOMContentLoaded', function() {
     createParticles();
     addCardEffects();
     addVisitorCounter();
+    setupVapiIntegration();
+    
+    // Mostrar información del sistema después de un delay
+    setTimeout(showSystemInfo, 2000);
 });
 

@@ -20,6 +20,7 @@
                     <li><a href="#inicio" class="nav-link">Inicio</a></li>
                     <li><a href="#presentacion" class="nav-link">Presentación</a></li>
                     <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+                    <li><a href="#juego-ia" class="nav-link">🎯 Juego IA</a></li>
                     <li><a href="#contacto" class="nav-link">Contacto</a></li>
                 </ul>
                 <div class="hamburger">
@@ -132,6 +133,35 @@
         </div>
     </section>
 
+    <!-- Juego IA Section -->
+    <section id="juego-ia" class="juego-ia">
+        <div class="container">
+            <h2 class="section-title">🎯 Juego de Inteligencia Artificial</h2>
+            <div class="juego-content">
+                <div class="juego-info">
+                    <h3>¡Detecta tu Mascota con IA!</h3>
+                    <p>Prueba nuestro increíble juego educativo que usa inteligencia artificial para identificar si tienes un perro o un gato usando solo tu cámara. ¡Es divertido y educativo!</p>
+                    <ul class="juego-features">
+                        <li><i class="fas fa-camera"></i> Usa tu cámara en tiempo real</li>
+                        <li><i class="fas fa-brain"></i> Tecnología de Teachable Machine</li>
+                        <li><i class="fas fa-heart"></i> Consejos personalizados</li>
+                        <li><i class="fas fa-gamepad"></i> Totalmente interactivo</li>
+                    </ul>
+                    <a href="pet-detector.html" class="cta-button">
+                        <i class="fas fa-play"></i> ¡Jugar Ahora!
+                    </a>
+                </div>
+                <div class="juego-preview">
+                    <div class="preview-card">
+                        <div class="preview-icon">🐶🐱</div>
+                        <h4>Detección Inteligente</h4>
+                        <p>Nuestra IA puede identificar perros y gatos con alta precisión</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contacto Section -->
     <section id="contacto" class="contacto">
         <div class="container">
@@ -203,11 +233,141 @@
         </div>
     </footer>
 
+    <!-- Sistema de Logging de Pedidos -->
+    <script src="js/order-logger.js"></script>
+    
     <script src="js/script.js"></script>
     
-    <!-- Chatbase Chatbot Script -->
+    <!-- Chatbase Chatbot Script - DISABLED (using n8n chat widget instead) -->
+    <!--
     <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="TNQ7IvsGog3BDA0O2rFh9";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+    -->
+    
+    <!-- Widget Vapi AI -->
+    <vapi-widget
+      public-key="c51f67b8-24bd-4901-a1e4-a19a5ba00747"
+      assistant-id="ac6c607b-e630-4090-af6e-f26c728b24f4"
+      mode="voice"
+      theme="dark"
+      base-bg-color="#000000"
+      accent-color="#14B8A6"
+      cta-button-color="#000000"
+      cta-button-text-color="#ffffff"
+      border-radius="large"
+      size="full"
+      position="bottom-left"
+      title="TALK WITH AI"
+      start-button-text="Start"
+      end-button-text="End Call"
+      chat-first-message="Hey, How can I help you today?"
+      chat-placeholder="Type your message..."
+      voice-show-transcript="true"
+      consent-required="true"
+      consent-title="Terms and conditions"
+      consent-content="By clicking "Agree," and each time I interact with this AI agent, I consent to the recording, storage, and sharing of my communications with third-party service providers, and as otherwise described in our Terms of Service."
+      consent-storage-key="vapi_widget_consent"
+    ></vapi-widget>
+    
+    <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
+    
+    <!-- n8n Chat Widget -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <script type="module">
+      import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
+
+      createChat({
+        webhookUrl:
+          "https://yayita.app.n8n.cloud/webhook/54c19457-ecd0-412b-999c-846e391105aa/chat",
+        showWelcomeScreen: true, // opcional: pantalla de bienvenida
+        i18n: {
+          en: {
+            // por ahora solo 'en' está soportado
+            title: "¡Hola! 👋",
+            subtitle: "Estoy aquí para ayudarte.",
+            inputPlaceholder: "Escribe tu pregunta…",
+            getStarted: "Nueva conversación",
+          },
+        },
+        initialMessages: [
+          "¡Hola! 👋",
+          "Soy el asistente de the originals pets. ¿En qué puedo ayudarte hoy?",
+        ],
+      });
+    </script>
+    
+    <!-- Script de configuración Vapi AI -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configuración específica para THE ORIGINALS PETS
+        console.log('🐾 THE ORIGINALS PETS - Vapi AI Widget (nuevo) cargado');
+        
+        // Esperar a que el widget se cargue
+        setTimeout(function() {
+            const vapiWidget = document.querySelector('vapi-widget');
+            
+            if (vapiWidget) {
+                console.log('✅ Widget Vapi AI detectado y configurado');
+                
+                // Personalizar comportamiento del widget
+                vapiWidget.addEventListener('vapi:call-started', function(event) {
+                    console.log('🎤 Llamada iniciada con asistente de mascotas');
+                    // Log de inicio de conversación
+                    if (window.OrderLogger) {
+                        window.OrderLogger.logs.push({
+                            id: window.OrderLogger.generateId(),
+                            timestamp: new Date().toISOString(),
+                            type: 'VAPI_CONVERSATION_STARTED',
+                            status: 'ACTIVE',
+                            data: {
+                                asistente: 'Vapi AI - Asistente de Mascotas',
+                                tipo: 'Conversación de voz',
+                                modo: 'voice',
+                                tema: 'dark',
+                                ip: window.OrderLogger.getClientIP(),
+                                userAgent: navigator.userAgent
+                            }
+                        });
+                        window.OrderLogger.saveLogs();
+                    }
+                });
+                
+                vapiWidget.addEventListener('vapi:call-ended', function(event) {
+                    console.log('📞 Llamada finalizada');
+                    // Log de finalización de conversación
+                    if (window.OrderLogger) {
+                        window.OrderLogger.logs.push({
+                            id: window.OrderLogger.generateId(),
+                            timestamp: new Date().toISOString(),
+                            type: 'VAPI_CONVERSATION_ENDED',
+                            status: 'COMPLETED',
+                            data: {
+                                asistente: 'Vapi AI - Asistente de Mascotas',
+                                tipo: 'Conversación de voz completada',
+                                modo: 'voice',
+                                tema: 'dark',
+                                ip: window.OrderLogger.getClientIP(),
+                                userAgent: navigator.userAgent
+                            }
+                        });
+                        window.OrderLogger.saveLogs();
+                    }
+                });
+
+                // Detectar cuando el usuario interactúa con el widget
+                vapiWidget.addEventListener('vapi:widget-opened', function(event) {
+                    console.log('🚀 Widget Vapi AI abierto por el usuario');
+                });
+
+                vapiWidget.addEventListener('vapi:widget-closed', function(event) {
+                    console.log('🔒 Widget Vapi AI cerrado por el usuario');
+                });
+            } else {
+                console.log('⚠️ Widget Vapi AI no detectado, reintentando...');
+            }
+        }, 3000);
+    });
     </script>
 </body>
 </html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 Detecta tu Mascota - THE ORIGINALS PETS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset y configuración base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Variables CSS */
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --accent-color: #45B7D1;
+            --success-color: #66BB6A;
+            --warning-color: #FFA726;
+            --dark-color: #2C3E50;
+            --light-color: #F8F9FA;
+            --pet-orange: #FF8C42;
+            --pet-blue: #4A90E2;
+            --pet-green: #7ED321;
+            --gradient-primary: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            --gradient-secondary: linear-gradient(135deg, #45B7D1, #96CEB4);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Game Container */
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .game-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Image Section */
+        .image-section {
+            margin-bottom: 2rem;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        #selected-image {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            display: none;
+            border-radius: 15px;
+        }
+
+        .image-placeholder {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            color: #666;
+            border: 2px dashed #ccc;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .image-placeholder:hover {
+            background: linear-gradient(135deg, #e8e8e8, #d8d8d8);
+            border-color: var(--primary-color);
+        }
+
+        .image-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .image-hint {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            margin: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--gradient-secondary);
+        }
+
+        /* Results Section */
+        .results-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--light-color);
+            border-radius: 15px;
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .result-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .result-confidence {
+            font-size: 1.2rem;
+            color: var(--success-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-message {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .tips-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .tip-card {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tip-card h4 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tip-card p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            margin: 1rem 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .game-title {
+                font-size: 2rem;
+            }
+
+            #selected-image, .image-placeholder {
+                width: 100%;
+                max-width: 350px;
+                height: 250px;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Pet-specific styles */
+        .dog-theme {
+            --primary-color: #FF8C42;
+        }
+
+        .cat-theme {
+            --primary-color: #4A90E2;
+        }
+
+        .error-theme {
+            --primary-color: #FF6B6B;
+        }
+
+        .dog-theme .result-emoji {
+            animation: pulse 2s infinite;
+        }
+
+        .cat-theme .result-emoji {
+            animation: bounce 2s infinite;
+        }
+
+        .error-theme .result-emoji {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🐾 THE ORIGINALS PETS</a>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Volver al Inicio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Game Container -->
+    <div class="container">
+        <div class="game-container">
+            <h1 class="game-title">🎯 Detecta tu Mascota</h1>
+            <p class="game-subtitle">¡Sube una foto de tu mascota para identificar si es un perro o un gato! 🐶🐱</p>
+
+            <!-- Image Upload Section -->
+            <div class="image-section">
+                <div class="image-container">
+                    <input type="file" id="image-input" accept="image/*" style="display: none;">
+                    <div id="image-placeholder" class="image-placeholder">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Haz clic para seleccionar una imagen</p>
+                        <p class="image-hint">Formatos soportados: JPG, PNG, GIF</p>
+                    </div>
+                    <img id="selected-image">
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Cargando modelo de inteligencia artificial...</p>
+                </div>
+
+                <div>
+                    <button id="select-image" class="btn">
+                        <i class="fas fa-image"></i> Seleccionar Imagen
+                    </button>
+                    <button id="detect-pet" class="btn btn-secondary" disabled>
+                        <i class="fas fa-search"></i> Detectar Mascota
+                    </button>
+                    <button id="clear-image" class="btn" disabled>
+                        <i class="fas fa-times"></i> Limpiar Imagen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <div id="result-emoji" class="result-emoji"></div>
+                <h2 id="result-title" class="result-title"></h2>
+                <p id="result-confidence" class="result-confidence"></p>
+                <p id="result-message" class="result-message"></p>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-section">
+            <h3 class="tips-title">💡 Consejos para Mejor Detección</h3>
+            
+            <div class="tip-card">
+                <h4><i class="fas fa-lightbulb"></i> Calidad de Imagen</h4>
+                <p>Usa imágenes claras y bien iluminadas donde se vean claramente las características de tu mascota.</p>
+            </div>
+
+            <div class="tip-card">
+                <h4><i class="fas fa-eye"></i> Enfoque</h4>
+                <p>La imagen debe mostrar principalmente el rostro o cuerpo de la mascota, evitando fondos muy complejos.</p>
+            </div>
+
+            <div class="tip-card">
+                <h4><i class="fas fa-image"></i> Tamaño</h4>
+                <p>Las imágenes muy pequeñas o muy grandes pueden afectar la precisión. Usa fotos de tamaño medio.</p>
+            </div>
+
+            <div class="tip-card">
+                <h4><i class="fas fa-paw"></i> Características</h4>
+                <p>El modelo funciona mejor cuando puede ver claramente las características faciales distintivas de tu mascota.</p>
+            </div>
+
+            <div class="tip-card">
+                <h4><i class="fas fa-exclamation-triangle"></i> Importante</h4>
+                <p><strong>Este detector solo identifica perros y gatos.</strong> Si subes una imagen de otro animal, persona u objeto, recibirás un mensaje de error.</p>
+            </div>
+
+            <div class="tip-card">
+                <h4><i class="fas fa-check-circle"></i> Imágenes Recomendadas</h4>
+                <p>• Una sola mascota en la imagen<br>• Rostro o cuerpo completo visible<br>• Buena iluminación<br>• Fondo simple o desenfocado</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    
+    <!-- Game Script -->
+    <script>
+        // Variables globales
+        let model = null;
+        let selectedImage = null;
+        let isDetecting = false;
+
+        // Elementos del DOM
+        const selectImageBtn = document.getElementById('select-image');
+        const detectPetBtn = document.getElementById('detect-pet');
+        const clearImageBtn = document.getElementById('clear-image');
+        const imageInput = document.getElementById('image-input');
+        const imagePlaceholder = document.getElementById('image-placeholder');
+        const selectedImageElement = document.getElementById('selected-image');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+        const resultEmoji = document.getElementById('result-emoji');
+        const resultTitle = document.getElementById('result-title');
+        const resultConfidence = document.getElementById('result-confidence');
+        const resultMessage = document.getElementById('result-message');
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGame();
+            setupEventListeners();
+        });
+
+        async function initializeGame() {
+            console.log('Inicializando juego de detección de mascotas...');
+            
+            // Mostrar loading
+            loading.classList.add('show');
+            
+            try {
+                // Cargar el modelo de Teachable Machine
+                console.log('Cargando modelo de Teachable Machine...');
+                const modelUrl = 'https://teachablemachine.withgoogle.com/models/CDrW0YzBr/model.json';
+                model = await tf.loadLayersModel(modelUrl);
+                console.log('Modelo cargado exitosamente');
+                
+                // Ocultar loading
+                loading.classList.remove('show');
+                
+                // Habilitar botón de selección de imagen
+                selectImageBtn.disabled = false;
+                
+            } catch (error) {
+                console.error('Error cargando el modelo:', error);
+                loading.innerHTML = '<p style="color: red;">Error cargando el modelo. Por favor, verifica tu conexión a internet.</p>';
+            }
+        }
+
+        function setupEventListeners() {
+            // Seleccionar imagen
+            selectImageBtn.addEventListener('click', function() {
+                imageInput.click();
+            });
+
+            // Placeholder clickeable
+            imagePlaceholder.addEventListener('click', function() {
+                imageInput.click();
+            });
+
+            // Manejar selección de archivo
+            imageInput.addEventListener('change', handleImageSelection);
+
+            // Detectar mascota
+            detectPetBtn.addEventListener('click', function() {
+                if (isDetecting || !selectedImage) return;
+                
+                isDetecting = true;
+                detectPetBtn.disabled = true;
+                
+                console.log('Iniciando detección...');
+                detectPet();
+            });
+
+            // Limpiar imagen
+            clearImageBtn.addEventListener('click', clearImage);
+        }
+
+        function handleImageSelection(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validar tipo de archivo
+            if (!file.type.startsWith('image/')) {
+                alert('Por favor, selecciona un archivo de imagen válido.');
+                return;
+            }
+
+            // Validar tamaño (máximo 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                alert('La imagen es demasiado grande. Por favor, selecciona una imagen menor a 10MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                selectedImage = e.target.result;
+                selectedImageElement.src = selectedImage;
+                selectedImageElement.style.display = 'block';
+                imagePlaceholder.style.display = 'none';
+                
+                // Habilitar/deshabilitar botones
+                detectPetBtn.disabled = false;
+                clearImageBtn.disabled = false;
+                
+                // Ocultar resultados anteriores
+                results.classList.remove('show');
+                
+                console.log('Imagen seleccionada exitosamente');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function clearImage() {
+            selectedImage = null;
+            selectedImageElement.style.display = 'none';
+            imagePlaceholder.style.display = 'flex';
+            imageInput.value = '';
+            
+            // Deshabilitar botones
+            detectPetBtn.disabled = true;
+            clearImageBtn.disabled = true;
+            
+            // Ocultar resultados
+            results.classList.remove('show');
+            
+            console.log('Imagen limpiada');
+        }
+
+        async function detectPet() {
+            try {
+                // Crear imagen element para procesar
+                const img = new Image();
+                img.onload = async function() {
+                    // Crear canvas para redimensionar imagen
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Establecer dimensiones del canvas (224x224 para el modelo)
+                    canvas.width = 224;
+                    canvas.height = 224;
+                    
+                    // Dibujar imagen redimensionada en el canvas
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    // Convertir imagen a tensor
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const tensor = tf.browser.fromPixels(imageData);
+                    const normalized = tensor.div(255.0);
+                    const batched = normalized.expandDims(0);
+                    
+                    // Realizar predicción
+                    console.log('Realizando predicción...');
+                    const prediction = await model.predict(batched);
+                    const probabilities = await prediction.data();
+                    
+                    // Obtener resultados
+                    const dogProbability = probabilities[0];
+                    const catProbability = probabilities[1];
+                    
+                    console.log('Probabilidades:', { perro: dogProbability, gato: catProbability });
+                    
+                    // Determinar resultado
+                    const isDog = dogProbability > catProbability;
+                    const confidence = Math.max(dogProbability, catProbability) * 100;
+                    const confidenceRounded = Math.round(confidence);
+                    
+                    // Verificar si la confianza es suficientemente alta
+                    const minConfidenceThreshold = 70; // 70% de confianza mínima
+                    
+                    if (confidenceRounded < minConfidenceThreshold) {
+                        // Mostrar error - imagen no reconocida como perro o gato
+                        showError(confidenceRounded);
+                    } else {
+                        // Mostrar resultados normales
+                        showResults(isDog, confidenceRounded);
+                    }
+                    
+                    // Limpiar tensors
+                    tensor.dispose();
+                    normalized.dispose();
+                    batched.dispose();
+                    prediction.dispose();
+                };
+                
+                img.src = selectedImage;
+                
+            } catch (error) {
+                console.error('Error durante la detección:', error);
+                alert('Error durante la detección. Por favor, intenta con otra imagen.');
+            } finally {
+                isDetecting = false;
+                detectPetBtn.disabled = false;
+            }
+        }
+
+        function showResults(isDog, confidence) {
+            // Configurar tema según el resultado
+            document.body.className = isDog ? 'dog-theme' : 'cat-theme';
+            
+            // Configurar elementos según el resultado
+            if (isDog) {
+                resultEmoji.textContent = '🐶';
+                resultTitle.textContent = '¡Es un Perro!';
+                resultMessage.innerHTML = `
+                    <strong>¡Qué lindo perrito!</strong><br><br>
+                    Los perros son animales increíblemente leales y cariñosos. 
+                    Asegúrate de darle mucho amor, ejercicio diario y una alimentación balanceada. 
+                    ¡Son los mejores compañeros de vida! 🐕✨
+                `;
+            } else {
+                resultEmoji.textContent = '🐱';
+                resultTitle.textContent = '¡Es un Gato!';
+                resultMessage.innerHTML = `
+                    <strong>¡Qué hermoso gatito!</strong><br><br>
+                    Los gatos son animales independientes pero muy cariñosos. 
+                    Proporciona un ambiente tranquilo, juguetes interactivos y cariño cuando ellos lo permitan. 
+                    ¡Son compañeros perfectos para la vida hogareña! 🐈✨
+                `;
+            }
+            
+            resultConfidence.textContent = `Confianza: ${confidence}%`;
+            
+            // Mostrar resultados con animación
+            results.classList.add('show');
+            
+            // Scroll suave a los resultados
+            results.scrollIntoView({ behavior: 'smooth' });
+            
+            console.log(`Detección completada: ${isDog ? 'Perro' : 'Gato'} (${confidence}%)`);
+        }
+
+        function showError(confidence) {
+            // Configurar tema de error
+            document.body.className = 'error-theme';
+            
+            // Configurar elementos de error
+            resultEmoji.textContent = '❌';
+            resultTitle.textContent = 'No se pudo identificar';
+            resultConfidence.textContent = `Confianza máxima: ${confidence}%`;
+            resultMessage.innerHTML = `
+                <strong>¡Oops! No pude identificar tu imagen como perro o gato</strong><br><br>
+                <strong>Posibles razones:</strong><br>
+                • La imagen no contiene una mascota<br>
+                • La imagen es muy borrosa o de baja calidad<br>
+                • La mascota no está claramente visible<br>
+                • La imagen contiene múltiples animales<br><br>
+                <strong>💡 Consejos:</strong><br>
+                • Usa una foto clara de una sola mascota<br>
+                • Asegúrate de que sea un perro o gato<br>
+                • Evita fotos grupales o con muchas personas<br>
+                • Intenta con una imagen más enfocada 🐾
+            `;
+            
+            // Mostrar resultados con animación
+            results.classList.add('show');
+            
+            // Scroll suave a los resultados
+            results.scrollIntoView({ behavior: 'smooth' });
+            
+            console.log(`Error de detección: Imagen no reconocida (${confidence}% confianza)`);
+        }
+    </script>
+</body>
+</html>
